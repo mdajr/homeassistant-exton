@@ -1,0 +1,51 @@
+---
+name: Home Assistant CI
+
+# yamllint disable-line rule:truthy
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: 0 0 * * *
+
+jobs:
+  yamllint:
+    name: 🧹 yamllint
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⤵️ Check out configuration from GitHub
+        uses: actions/checkout@v3.3.0
+      - name: 🚀 Run yamllint
+        uses: frenck/action-yamllint@v1.3.1
+
+  version:
+    name: Get Installed Home Assistant Version
+    needs: [yamllint]
+    runs-on: ubuntu-latest
+    outputs:
+      current_version: ${{ steps.currentver.outputs.current_version }}
+    steps:
+      - name: Get config from GitHub
+        uses: actions/checkout@v3.3.0
+      - name: Get Installed Version from .HA_VERSION
+        id: currentver
+        run: |
+          HA_VERSION=$(<.HA_VERSION)
+          echo $HA_VERSION
+          echo "current_version=$HA_VERSION" >> $GITHUB_OUTPUT
+
+  home-assistant:
+    name: "Home Assistant ${{ matrix.version }} Configuration Check"
+    needs: [yamllint, version]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        version: ["${{needs.version.outputs.current_version}}", "stable"]
+    steps:
+      - name: ⤵️ Check out configuration from GitHub
+        uses: actions/checkout@v3.3.0
+      - name: 🚀 Run Home Assistant Configuration Check
+        uses: frenck/action-home-assistant@v1.4
+        with:
+          secrets: ./secrets.fake.yaml
+          version: "${{ matrix.version }}"

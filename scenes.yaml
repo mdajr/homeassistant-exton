@@ -1,0 +1,111 @@
+- id: '1658624386807'
+  name: Sundown - Full
+  entities:
+    switch.camera:
+      state: 'off'
+    switch.table_fan:
+      state: 'off'
+    light.kitchen_lights:
+      brightness: 255
+      state: 'on'
+    light.living_room_lights:
+      brightness: 255
+      state: 'on'
+    cover.upper_blinds:
+      state: open
+    cover.lower_blinds:
+      state: closed
+  metadata: {}
+- id: '1664321748196'
+  name: Sundown - Diff
+  entities:
+    light.kitchen_lights:
+      brightness: 255
+      state: 'on'
+    light.living_room_left:
+      brightness: 255
+      state: 'on'
+    cover.lower_blinds:
+      state: closed
+  metadata: {}
+- id: '1658624917283'
+  name: Movie
+  entities:
+    light.all_lights:
+      state: 'off'
+  metadata: {}
+- id: '1658625112323'
+  name: Daylight
+  entities:
+    switch.camera:
+      state: 'off'
+    switch.table_fan:
+      state: 'off'
+    cover.all_blinds:
+      state: open
+    light.all_lights:
+      state: 'off'
+  metadata: {}
+- id: '1658625262957'
+  name: Away
+  entities:
+    switch.camera:
+      state: 'on'
+    switch.table_fan:
+      state: 'off'
+    light.all_lights:
+      state: 'off'
+    cover.all_blinds:
+      state: closed
+  metadata: {}
+- id: '1658625640473'
+  name: Bedtime
+  entities:
+    switch.camera:
+      state: 'off'
+    switch.table_fan:
+      state: 'off'
+    cover.all_blinds:
+      current_position: 0
+      state: closed
+    light.kitchen_lights:
+      state: 'off'
+    light.living_room_lights:
+      state: 'off'
+    light.bedroom_lights:
+      brightness: 30
+      state: 'on'
+    light.office_lights:
+      state: 'off'
+    light.overhead_lights:
+      state: 'off'
+    light.cabinet_lights:
+      state: 'off'
+  metadata: {}
+- id: '1658626099656'
+  name: Sleep
+  entities:
+    switch.camera:
+      state: 'off'
+    switch.table_fan:
+      state: 'on'
+    cover.all_blinds:
+      state: closed
+    light.all_lights:
+      state: 'off'
+    fan.nest_thermostat:
+      friendly_name: Nest Thermostat
+      supported_features: 0
+      state: 'on'
+  metadata:
+    fan.nest_thermostat:
+      entity_only: true
+- id: '1664333374302'
+  name: Morning but in bed
+  entities:
+    switch.table_fan:
+      state: 'off'
+    light.bedroom_lights:
+      brightness: 255
+      state: 'on'
+  metadata: {}

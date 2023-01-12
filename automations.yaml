@@ -1,0 +1,403 @@
+- id: '1658627548900'
+  alias: Leave Home
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.home
+    to: 'off'
+  condition: []
+  action:
+  - service: scene.turn_on
+    target:
+      entity_id: scene.away
+    metadata: {}
+  mode: single
+- id: '1658627696330'
+  alias: Arrive Home
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.home
+    to: 'on'
+  condition: []
+  action:
+  - if:
+    - condition: template
+      value_template: '{{ state_attr(''sun.sun'', ''elevation'') < float(states(''input_number.sun_elevation_trigger''))
+        }}'
+    then:
+    - service: scene.turn_on
+      target:
+        entity_id: scene.sundown
+      metadata: {}
+    else:
+    - service: scene.turn_on
+      target:
+        entity_id: scene.daylight
+      metadata: {}
+  mode: single
+- id: '1658629110313'
+  alias: Goodnight
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.goodnight
+    to: 'on'
+  condition: []
+  action:
+  - service: scene.turn_on
+    data:
+      transition: 3
+    target:
+      entity_id: scene.sleep
+  - service: input_boolean.turn_off
+    data: {}
+    target:
+      entity_id: input_boolean.bed_time
+  mode: single
+- id: '1658629975695'
+  alias: Movie Playing
+  description: ''
+  trigger:
+  - platform: template
+    value_template: '{{ is_state(''media_player.living_room_tv'', ''playing'') and
+      state_attr(''media_player.living_room_2'', ''app_id'') in [''com.disney.disneyplus'',
+      ''com.plexapp.plex'', ''com.amazon.aiv.AIVApp''] }} '
+  condition: []
+  action:
+  - service: scene.create
+    data:
+      scene_id: before_movie
+      snapshot_entities:
+      - light.kitchen_left
+      - light.kitchen_right
+      - light.living_room_floor
+      - light.living_room_left
+  - service: scene.turn_on
+    data:
+      transition: 3
+    target:
+      entity_id: scene.movie
+  - wait_for_trigger:
+    - platform: state
+      entity_id:
+      - media_player.living_room_2
+      from: playing
+    continue_on_timeout: false
+  - service: scene.turn_on
+    data:
+      transition: 3
+    target:
+      entity_id: scene.before_movie
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 5
+      milliseconds: 0
+  - if:
+    - condition: template
+      value_template: '{{ state_attr(''sun.sun'', ''elevation'') < float(states(''input_number.sun_elevation_trigger''))
+        }}'
+    then:
+    - service: scene.turn_on
+      target:
+        entity_id: scene.sundown_diff
+      metadata: {}
+    else:
+    - service: scene.turn_on
+      target:
+        entity_id: scene.daylight
+      metadata: {}
+  mode: single
+- id: '1658631479352'
+  alias: Goodmorning
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.goodnight
+    to: 'off'
+  condition: []
+  action:
+  - if:
+    - condition: template
+      value_template: '{{ state_attr(''sun.sun'', ''elevation'') < float(states(''input_number.sun_elevation_trigger''))
+        }}'
+    then:
+    - service: scene.turn_on
+      target:
+        entity_id: scene.sundown
+      metadata: {}
+    else:
+    - service: scene.turn_on
+      target:
+        entity_id: scene.daylight
+      metadata: {}
+  mode: single
+- id: '1658632449069'
+  alias: Bedtime
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.bed_time
+    to: 'on'
+  condition: []
+  action:
+  - service: scene.turn_on
+    data:
+      transition: 3
+    target:
+      entity_id: scene.bedtime
+  mode: single
+- id: '1658632765311'
+  alias: Sundown
+  description: ''
+  trigger:
+  - platform: template
+    value_template: '{{ state_attr(''sun.sun'', ''elevation'') < float(states(''input_number.sun_elevation_trigger''))
+      }}'
+  condition:
+  - condition: state
+    entity_id: input_boolean.home
+    state: 'on'
+  action:
+  - service: scene.turn_on
+    target:
+      entity_id: scene.sundown_diff
+    data: {}
+  mode: single
+- id: '1659580537119'
+  alias: Office Light Switch On
+  description: ''
+  trigger:
+  - platform: device
+    device_id: 3d915973f55a5b37d59d6ecc5f7c9fbb
+    domain: zwave_js
+    type: event.value_notification.central_scene
+    property: scene
+    property_key: '001'
+    endpoint: 0
+    command_class: 91
+    subtype: Endpoint 0 Scene 001
+    value: 0
+  condition: []
+  action:
+  - service: light.turn_on
+    data:
+      brightness: 255
+    target:
+      device_id:
+      - 321b8ad8cd59d45d721160b1717a6142
+      - 4c6fcc8e6e6e0ad5c289ef182e27d362
+  mode: single
+- id: '1659581192411'
+  alias: Office Light Switch Off
+  description: ''
+  trigger:
+  - platform: device
+    device_id: 3d915973f55a5b37d59d6ecc5f7c9fbb
+    domain: zwave_js
+    type: event.value_notification.central_scene
+    property: scene
+    property_key: '002'
+    endpoint: 0
+    command_class: 91
+    subtype: Endpoint 0 Scene 001
+    value: 0
+  condition: []
+  action:
+  - service: light.turn_off
+    data: {}
+    target:
+      device_id:
+      - 321b8ad8cd59d45d721160b1717a6142
+      - 4c6fcc8e6e6e0ad5c289ef182e27d362
+  mode: single
+- id: '1664328039282'
+  alias: Scene Tracker
+  description: ''
+  trigger:
+  - event_data:
+      domain: scene
+      service: turn_on
+    event_type: call_service
+    platform: event
+  condition: []
+  action:
+  - service: input_text.set_value
+    data_template:
+      entity_id: input_text.current_scene
+      value: '{{trigger.event.data.service_data.entity_id}}'
+  mode: single
+- id: '1664333443849'
+  alias: Morning but in Bed
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.morning_but_in_bed
+    to: 'on'
+  condition: []
+  action:
+  - service: scene.turn_on
+    data: {}
+    target:
+      entity_id: scene.morning_but_in_bed
+  - if:
+    - condition: template
+      value_template: '{{ state_attr(''sun.sun'', ''elevation'') > 0 }}'
+    then:
+    - service: cover.open_cover
+      data: {}
+      target:
+        entity_id: cover.bedroom_top_window
+    else: []
+  mode: single
+- id: '1668741996663'
+  alias: Living Room Switch Turn On Lights
+  description: ''
+  trigger:
+  - platform: device
+    device_id: 797a79836dddf66e708ed9bf707bb4d6
+    domain: zwave_js
+    type: event.value_notification.central_scene
+    property: scene
+    property_key: '001'
+    endpoint: 0
+    command_class: 91
+    subtype: Endpoint 0 Scene 001
+    value: 0
+  condition: []
+  action:
+  - service: light.turn_on
+    data:
+      brightness_pct: 100
+    target:
+      device_id:
+      - 870eba645fdfef95a789a63a8ced4db5
+      - 23e6092859a3c851d792fd54b98a117f
+      - c0790c05470acf27c7e4e00310943caf
+      - 7f6ee59c29c4e1fdeaf8b0ee005df543
+  mode: single
+- id: '1668742110400'
+  alias: Living Room Switch Turn Off Lights
+  description: ''
+  trigger:
+  - platform: device
+    device_id: 797a79836dddf66e708ed9bf707bb4d6
+    domain: zwave_js
+    type: event.value_notification.central_scene
+    property: scene
+    property_key: '002'
+    endpoint: 0
+    command_class: 91
+    subtype: Endpoint 0 Scene 002
+    value: 0
+  condition: []
+  action:
+  - service: light.turn_off
+    data: {}
+    target:
+      device_id:
+      - 870eba645fdfef95a789a63a8ced4db5
+      - 23e6092859a3c851d792fd54b98a117f
+      - c0790c05470acf27c7e4e00310943caf
+      - 7f6ee59c29c4e1fdeaf8b0ee005df543
+      - 31974d400e33ce4d88e8b6de9eb596be
+      - 12371c2839ea894c3df0cb98185e7664
+  mode: single
+- id: '1668742600243'
+  alias: Living Room Switch Blinds Open
+  description: ''
+  trigger:
+  - platform: device
+    device_id: 797a79836dddf66e708ed9bf707bb4d6
+    domain: zwave_js
+    type: event.value_notification.central_scene
+    property: scene
+    property_key: '001'
+    endpoint: 0
+    command_class: 91
+    subtype: Endpoint 0 Scene 001
+    value: 3
+  condition: []
+  action:
+  - service: cover.open_cover
+    data: {}
+    target:
+      device_id:
+      - 452d675feae6b57f9e616055be3bc2ec
+      - 1aa83a141bbfe5f7b9682bf8e6118714
+  mode: single
+- id: '1668742646845'
+  alias: Living Room Switch Blinds Close
+  description: ''
+  trigger:
+  - platform: device
+    device_id: 797a79836dddf66e708ed9bf707bb4d6
+    domain: zwave_js
+    type: event.value_notification.central_scene
+    property: scene
+    property_key: '002'
+    endpoint: 0
+    command_class: 91
+    subtype: Endpoint 0 Scene 002
+    value: 3
+  condition: []
+  action:
+  - service: cover.close_cover
+    data: {}
+    target:
+      device_id:
+      - 452d675feae6b57f9e616055be3bc2ec
+      - 024c1b59d9891d9d95f5ed403eb631c1
+      - 1aa83a141bbfe5f7b9682bf8e6118714
+  mode: single
+- id: '1668810352648'
+  alias: Office Switch Close Blinds
+  description: ''
+  trigger:
+  - platform: device
+    device_id: 3d915973f55a5b37d59d6ecc5f7c9fbb
+    domain: zwave_js
+    type: event.value_notification.central_scene
+    property: scene
+    property_key: '002'
+    endpoint: 0
+    command_class: 91
+    subtype: Endpoint 0 Scene 001
+    value: 3
+  condition: []
+  action:
+  - service: cover.close_cover
+    data: {}
+    target:
+      device_id:
+      - 53e58cb833c4f72970d5e74e918567bf
+      - 1a44945085908fedc93a934d2832995a
+  mode: single
+- id: '1668810395873'
+  alias: Office Switch Open Blinds
+  description: ''
+  trigger:
+  - platform: device
+    device_id: 3d915973f55a5b37d59d6ecc5f7c9fbb
+    domain: zwave_js
+    type: event.value_notification.central_scene
+    property: scene
+    property_key: '001'
+    endpoint: 0
+    command_class: 91
+    subtype: Endpoint 0 Scene 001
+    value: 3
+  condition: []
+  action:
+  - service: cover.open_cover
+    data: {}
+    target:
+      device_id: 53e58cb833c4f72970d5e74e918567bf
+  mode: single
