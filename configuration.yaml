@@ -11,8 +11,8 @@ influxdb:
   host: !secret host
   port: !secret influx_port
   token: !secret influx_token
-  organization: influx_organization
-  bucket: influx_bucket
+  organization: !secret influx_organization
+  bucket: !secret influx_bucket
   max_retries: 3
   ssl: false
 
