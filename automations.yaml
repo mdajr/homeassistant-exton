@@ -329,9 +329,10 @@
   - service: cover.open_cover
     data: {}
     target:
-      device_id:
-      - 452d675feae6b57f9e616055be3bc2ec
-      - 1aa83a141bbfe5f7b9682bf8e6118714
+      entity_id:
+      - cover.porch_blinds
+      - cover.living_room_top_blinds
+      - cover.living_room_bottom_blinds
   mode: single
 - id: '1668742646845'
   alias: Living Room Switch Blinds Close
@@ -352,10 +353,10 @@
   - service: cover.close_cover
     data: {}
     target:
-      device_id:
-      - 452d675feae6b57f9e616055be3bc2ec
-      - 024c1b59d9891d9d95f5ed403eb631c1
-      - 1aa83a141bbfe5f7b9682bf8e6118714
+      entity_id:
+      - cover.living_room_bottom_blinds
+      - cover.living_room_top_blinds
+      - cover.porch_blinds
   mode: single
 - id: '1668810352648'
   alias: Office Switch Close Blinds
@@ -376,9 +377,9 @@
   - service: cover.close_cover
     data: {}
     target:
-      device_id:
-      - 53e58cb833c4f72970d5e74e918567bf
-      - 1a44945085908fedc93a934d2832995a
+      entity_id:
+      - cover.office_bottom_blinds
+      - cover.office_top_blinds
   mode: single
 - id: '1668810395873'
   alias: Office Switch Open Blinds
@@ -399,7 +400,9 @@
   - service: cover.open_cover
     data: {}
     target:
-      device_id: 53e58cb833c4f72970d5e74e918567bf
+      entity_id:
+      - cover.office_top_blinds
+      - cover.office_bottom_blinds
   mode: single
 - id: '1673494643110'
   alias: Update-Slider-Living-Room-Top-Blinds-Set-Position
