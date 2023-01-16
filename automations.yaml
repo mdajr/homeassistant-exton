@@ -330,9 +330,9 @@
     data: {}
     target:
       entity_id:
-      - cover.porch_blinds
-      - cover.living_room_top_blinds
-      - cover.living_room_bottom_blinds
+      - cover.porch_door
+      - cover.living_room_top_window
+      - cover.living_room_bottom_window
   mode: single
 - id: '1668742646845'
   alias: Living Room Switch Blinds Close
@@ -354,9 +354,9 @@
     data: {}
     target:
       entity_id:
-      - cover.living_room_bottom_blinds
-      - cover.living_room_top_blinds
-      - cover.porch_blinds
+      - cover.living_room_top_window
+      - cover.living_room_bottom_window
+      - cover.porch_door
   mode: single
 - id: '1668810352648'
   alias: Office Switch Close Blinds
@@ -378,8 +378,8 @@
     data: {}
     target:
       entity_id:
-      - cover.office_bottom_blinds
-      - cover.office_top_blinds
+      - cover.office_top_window
+      - cover.office_bottom_window
   mode: single
 - id: '1668810395873'
   alias: Office Switch Open Blinds
@@ -401,6 +401,6 @@
     data: {}
     target:
       entity_id:
-      - cover.office_top_blinds
-      - cover.office_bottom_blinds
+      - cover.office_top_window
+      - cover.office_bottom_window
   mode: single
