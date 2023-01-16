@@ -3,8 +3,6 @@
   entities:
     switch.camera:
       state: 'off'
-    switch.table_fan:
-      state: 'off'
     light.kitchen_lights:
       brightness: 255
       state: 'on'
@@ -39,8 +37,6 @@
   entities:
     switch.camera:
       state: 'off'
-    switch.table_fan:
-      state: 'off'
     cover.all_blinds:
       state: open
     light.all_lights:
@@ -51,8 +47,6 @@
   entities:
     switch.camera:
       state: 'on'
-    switch.table_fan:
-      state: 'off'
     light.all_lights:
       state: 'off'
     cover.all_blinds:
@@ -62,8 +56,6 @@
   name: Bedtime
   entities:
     switch.camera:
-      state: 'off'
-    switch.table_fan:
       state: 'off'
     cover.all_blinds:
       current_position: 0
@@ -87,8 +79,6 @@
   entities:
     switch.camera:
       state: 'off'
-    switch.table_fan:
-      state: 'on'
     cover.all_blinds:
       state: closed
     light.all_lights:
@@ -103,8 +93,6 @@
 - id: '1664333374302'
   name: Morning but in bed
   entities:
-    switch.table_fan:
-      state: 'off'
     light.bedroom_lights:
       brightness: 255
       state: 'on'
