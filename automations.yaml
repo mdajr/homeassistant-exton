@@ -583,7 +583,25 @@
     - conditions:
       - condition: trigger
         id: TopHeld
-      sequence: []
+      sequence:
+      - repeat:
+          while:
+          - condition: trigger
+            id: TopHeld
+          sequence:
+          - device_id: 2d572ca68d38274b32b15e3930e470f5
+            domain: light
+            entity_id: light.bedroom_left
+            type: brightness_increase
+          - device_id: 6fae3d570a4aca30860020970d44856a
+            domain: light
+            entity_id: light.bedroom_right
+            type: brightness_increase
+          - delay:
+              hours: 0
+              minutes: 0
+              seconds: 0
+              milliseconds: 100
     - conditions:
       - condition: trigger
         id: TopPressed2
@@ -623,7 +641,25 @@
     - conditions:
       - condition: trigger
         id: BottomHeld
-      sequence: []
+      sequence:
+      - repeat:
+          while:
+          - condition: trigger
+            id: BottomHeld
+          sequence:
+          - device_id: 2d572ca68d38274b32b15e3930e470f5
+            domain: light
+            entity_id: light.bedroom_left
+            type: brightness_decrease
+          - device_id: 6fae3d570a4aca30860020970d44856a
+            domain: light
+            entity_id: light.bedroom_right
+            type: brightness_decrease
+          - delay:
+              hours: 0
+              minutes: 0
+              seconds: 0
+              milliseconds: 100
     - conditions:
       - condition: trigger
         id: BottomPressed2
@@ -646,4 +682,4 @@
       - condition: trigger
         id: BottomPressed5
       sequence: []
-  mode: single
+  mode: restart
