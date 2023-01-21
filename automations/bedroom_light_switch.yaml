@@ -1,0 +1,280 @@
+---
+id: '1674002288040'
+alias: Bedroom Light Switch
+description: ''
+trigger:
+- platform: device
+  device_id: b0e81aa6f43b09cd1eead77598829370
+  domain: zwave_js
+  type: event.value_notification.central_scene
+  property: scene
+  property_key: '001'
+  endpoint: 0
+  command_class: 91
+  subtype: Endpoint 0 Scene 001
+  value: 0
+  id: TopPressed
+- platform: device
+  device_id: b0e81aa6f43b09cd1eead77598829370
+  domain: zwave_js
+  type: event.value_notification.central_scene
+  property: scene
+  property_key: '002'
+  endpoint: 0
+  command_class: 91
+  subtype: Endpoint 0 Scene 002
+  value: 1
+  id: TopReleased
+- platform: device
+  device_id: b0e81aa6f43b09cd1eead77598829370
+  domain: zwave_js
+  type: event.value_notification.central_scene
+  property: scene
+  property_key: '001'
+  endpoint: 0
+  command_class: 91
+  subtype: Endpoint 0 Scene 001
+  value: 2
+  id: TopHeld
+- platform: device
+  device_id: b0e81aa6f43b09cd1eead77598829370
+  domain: zwave_js
+  type: event.value_notification.central_scene
+  property: scene
+  property_key: '001'
+  endpoint: 0
+  command_class: 91
+  subtype: Endpoint 0 Scene 001
+  value: 3
+  id: TopPressed2
+- platform: device
+  device_id: b0e81aa6f43b09cd1eead77598829370
+  domain: zwave_js
+  type: event.value_notification.central_scene
+  property: scene
+  property_key: '001'
+  endpoint: 0
+  command_class: 91
+  subtype: Endpoint 0 Scene 001
+  value: 4
+  id: TopPressed3
+- platform: device
+  device_id: b0e81aa6f43b09cd1eead77598829370
+  domain: zwave_js
+  type: event.value_notification.central_scene
+  property: scene
+  property_key: '001'
+  endpoint: 0
+  command_class: 91
+  subtype: Endpoint 0 Scene 001
+  value: 5
+  id: TopPressed4
+- platform: device
+  device_id: b0e81aa6f43b09cd1eead77598829370
+  domain: zwave_js
+  type: event.value_notification.central_scene
+  property: scene
+  property_key: '001'
+  endpoint: 0
+  command_class: 91
+  subtype: Endpoint 0 Scene 001
+  value: 6
+  id: TopPressed5
+- platform: device
+  device_id: b0e81aa6f43b09cd1eead77598829370
+  domain: zwave_js
+  type: event.value_notification.central_scene
+  property: scene
+  property_key: '002'
+  endpoint: 0
+  command_class: 91
+  subtype: Endpoint 0 Scene 002
+  value: 0
+  id: BottomPressed
+- platform: device
+  device_id: b0e81aa6f43b09cd1eead77598829370
+  domain: zwave_js
+  type: event.value_notification.central_scene
+  property: scene
+  property_key: '002'
+  endpoint: 0
+  command_class: 91
+  subtype: Endpoint 0 Scene 002
+  value: 1
+  id: BottomReleased
+- platform: device
+  device_id: b0e81aa6f43b09cd1eead77598829370
+  domain: zwave_js
+  type: event.value_notification.central_scene
+  property: scene
+  property_key: '002'
+  endpoint: 0
+  command_class: 91
+  subtype: Endpoint 0 Scene 002
+  value: 2
+  id: BottomHeld
+- platform: device
+  device_id: b0e81aa6f43b09cd1eead77598829370
+  domain: zwave_js
+  type: event.value_notification.central_scene
+  property: scene
+  property_key: '002'
+  endpoint: 0
+  command_class: 91
+  subtype: Endpoint 0 Scene 002
+  value: 3
+  id: BottomPressed2
+- platform: device
+  device_id: b0e81aa6f43b09cd1eead77598829370
+  domain: zwave_js
+  type: event.value_notification.central_scene
+  property: scene
+  property_key: '002'
+  endpoint: 0
+  command_class: 91
+  subtype: Endpoint 0 Scene 002
+  value: 4
+  id: BottomPressed3
+- platform: device
+  device_id: b0e81aa6f43b09cd1eead77598829370
+  domain: zwave_js
+  type: event.value_notification.central_scene
+  property: scene
+  property_key: '002'
+  endpoint: 0
+  command_class: 91
+  subtype: Endpoint 0 Scene 002
+  value: 5
+  id: BottomPressed4
+- platform: device
+  device_id: b0e81aa6f43b09cd1eead77598829370
+  domain: zwave_js
+  type: event.value_notification.central_scene
+  property: scene
+  property_key: '002'
+  endpoint: 0
+  command_class: 91
+  subtype: Endpoint 0 Scene 002
+  value: 6
+  id: BottomPressed5
+condition: []
+action:
+- choose:
+  - conditions:
+    - condition: trigger
+      id: TopPressed
+    sequence:
+    - service: light.turn_on
+      data:
+        brightness_pct: 100
+      target:
+        device_id:
+        - 6fae3d570a4aca30860020970d44856a
+        - 2d572ca68d38274b32b15e3930e470f5
+  - conditions:
+    - condition: trigger
+      id: TopReleased
+    sequence: []
+  - conditions:
+    - condition: trigger
+      id: TopHeld
+    sequence:
+    - repeat:
+        while:
+        - condition: trigger
+          id: TopHeld
+        sequence:
+        - device_id: 2d572ca68d38274b32b15e3930e470f5
+          domain: light
+          entity_id: light.bedroom_left
+          type: brightness_increase
+        - device_id: 6fae3d570a4aca30860020970d44856a
+          domain: light
+          entity_id: light.bedroom_right
+          type: brightness_increase
+        - delay:
+            hours: 0
+            minutes: 0
+            seconds: 0
+            milliseconds: 100
+  - conditions:
+    - condition: trigger
+      id: TopPressed2
+    sequence:
+    - service: cover.open_cover
+      data: {}
+      target:
+        device_id:
+        - 84aa6ba0a5364ac3e83885e547e06400
+        - 12a817c8f51e9afa02b88a6d84ffc598
+  - conditions:
+    - condition: trigger
+      id: TopPressed3
+    sequence: []
+  - conditions:
+    - condition: trigger
+      id: TopPressed4
+    sequence: []
+  - conditions:
+    - condition: trigger
+      id: TopPressed5
+    sequence: []
+  - conditions:
+    - condition: trigger
+      id: BottomPressed
+    sequence:
+    - service: light.turn_off
+      data: {}
+      target:
+        device_id:
+        - 2d572ca68d38274b32b15e3930e470f5
+        - 6fae3d570a4aca30860020970d44856a
+  - conditions:
+    - condition: trigger
+      id: BottomReleased
+    sequence: []
+  - conditions:
+    - condition: trigger
+      id: BottomHeld
+    sequence:
+    - repeat:
+        while:
+        - condition: trigger
+          id: BottomHeld
+        sequence:
+        - device_id: 2d572ca68d38274b32b15e3930e470f5
+          domain: light
+          entity_id: light.bedroom_left
+          type: brightness_decrease
+        - device_id: 6fae3d570a4aca30860020970d44856a
+          domain: light
+          entity_id: light.bedroom_right
+          type: brightness_decrease
+        - delay:
+            hours: 0
+            minutes: 0
+            seconds: 0
+            milliseconds: 100
+  - conditions:
+    - condition: trigger
+      id: BottomPressed2
+    sequence:
+    - service: cover.close_cover
+      data: {}
+      target:
+        device_id:
+        - 84aa6ba0a5364ac3e83885e547e06400
+        - 12a817c8f51e9afa02b88a6d84ffc598
+  - conditions:
+    - condition: trigger
+      id: BottomPressed3
+    sequence: []
+  - conditions:
+    - condition: trigger
+      id: BottomPressed4
+    sequence: []
+  - conditions:
+    - condition: trigger
+      id: BottomPressed5
+    sequence: []
+mode: restart

@@ -1,0 +1,23 @@
+---
+id: '1658625640473'
+name: Bedtime
+entities:
+  switch.camera:
+    state: 'off'
+  cover.all_blinds:
+    current_position: 0
+    state: closed
+  light.kitchen_lights:
+    state: 'off'
+  light.living_room_lights:
+    state: 'off'
+  light.bedroom_lights:
+    brightness: 30
+    state: 'on'
+  light.office_lights:
+    state: 'off'
+  light.overhead_lights:
+    state: 'off'
+  light.cabinet_lights:
+    state: 'off'
+metadata: {}

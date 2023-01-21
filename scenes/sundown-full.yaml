@@ -1,0 +1,17 @@
+---
+id: '1658624386807'
+name: Sundown - Full
+entities:
+  switch.camera:
+    state: 'off'
+  light.kitchen_lights:
+    brightness: 255
+    state: 'on'
+  light.living_room_lights:
+    brightness: 255
+    state: 'on'
+  cover.upper_blinds:
+    state: open
+  cover.lower_blinds:
+    state: closed
+metadata: {}

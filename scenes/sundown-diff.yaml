@@ -1,0 +1,12 @@
+id: '1664321748196'
+name: Sundown - Diff
+entities:
+  light.kitchen_lights:
+    brightness: 255
+    state: 'on'
+  light.living_room_left:
+    brightness: 255
+    state: 'on'
+  cover.lower_blinds:
+    state: closed
+metadata: {}

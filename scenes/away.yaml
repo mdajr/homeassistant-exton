@@ -1,0 +1,11 @@
+---
+id: '1658625262957'
+name: Away
+entities:
+  switch.camera:
+    state: 'on'
+  light.all_lights:
+    state: 'off'
+  cover.all_blinds:
+    state: closed
+metadata: {}

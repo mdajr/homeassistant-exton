@@ -1,0 +1,11 @@
+---
+id: '1658625112323'
+name: Daylight
+entities:
+  switch.camera:
+    state: 'off'
+  cover.all_blinds:
+    state: open
+  light.all_lights:
+    state: 'off'
+metadata: {}

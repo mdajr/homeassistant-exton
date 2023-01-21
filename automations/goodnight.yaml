@@ -1,0 +1,21 @@
+---
+id: '1658629110313'
+alias: Goodnight
+description: ''
+trigger:
+- platform: state
+  entity_id:
+  - input_boolean.goodnight
+  to: 'on'
+condition: []
+action:
+- service: scene.turn_on
+  data:
+    transition: 3
+  target:
+    entity_id: scene.sleep
+- service: input_boolean.turn_off
+  data: {}
+  target:
+    entity_id: input_boolean.bed_time
+mode: single

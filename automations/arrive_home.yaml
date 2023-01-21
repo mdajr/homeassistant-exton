@@ -1,0 +1,26 @@
+---
+id: '1658627696330'
+alias: Arrive Home
+description: ''
+trigger:
+- platform: state
+  entity_id:
+  - input_boolean.home
+  to: 'on'
+condition: []
+action:
+- if:
+  - condition: template
+    value_template: '{{ state_attr(''sun.sun'', ''elevation'') < float(states(''input_number.sun_elevation_trigger''))
+      }}'
+  then:
+  - service: scene.turn_on
+    target:
+      entity_id: scene.sundown
+    metadata: {}
+  else:
+  - service: scene.turn_on
+    target:
+      entity_id: scene.daylight
+    metadata: {}
+mode: single

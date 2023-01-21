@@ -1,0 +1,17 @@
+---
+id: '1658632449069'
+alias: Bedtime
+description: ''
+trigger:
+- platform: state
+  entity_id:
+  - input_boolean.bed_time
+  to: 'on'
+condition: []
+action:
+- service: scene.turn_on
+  data:
+    transition: 3
+  target:
+    entity_id: scene.bedtime
+mode: single
