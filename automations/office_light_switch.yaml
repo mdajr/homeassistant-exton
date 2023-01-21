@@ -1,0 +1,280 @@
+---
+id: "1674335181935"
+alias: Office Light Switch
+description: ""
+trigger:
+  - platform: device
+    device_id: 3d915973f55a5b37d59d6ecc5f7c9fbb
+    domain: zwave_js
+    type: event.value_notification.central_scene
+    property: scene
+    property_key: "001"
+    endpoint: 0
+    command_class: 91
+    subtype: Endpoint 0 Scene 001
+    value: 0
+    id: TopPressed
+  - platform: device
+    device_id: 3d915973f55a5b37d59d6ecc5f7c9fbb
+    domain: zwave_js
+    type: event.value_notification.central_scene
+    property: scene
+    property_key: "002"
+    endpoint: 0
+    command_class: 91
+    subtype: Endpoint 0 Scene 002
+    value: 1
+    id: TopReleased
+  - platform: device
+    device_id: 3d915973f55a5b37d59d6ecc5f7c9fbb
+    domain: zwave_js
+    type: event.value_notification.central_scene
+    property: scene
+    property_key: "001"
+    endpoint: 0
+    command_class: 91
+    subtype: Endpoint 0 Scene 001
+    value: 2
+    id: TopHeld
+  - platform: device
+    device_id: 3d915973f55a5b37d59d6ecc5f7c9fbb
+    domain: zwave_js
+    type: event.value_notification.central_scene
+    property: scene
+    property_key: "001"
+    endpoint: 0
+    command_class: 91
+    subtype: Endpoint 0 Scene 001
+    value: 3
+    id: TopPressed2
+  - platform: device
+    device_id: 3d915973f55a5b37d59d6ecc5f7c9fbb
+    domain: zwave_js
+    type: event.value_notification.central_scene
+    property: scene
+    property_key: "001"
+    endpoint: 0
+    command_class: 91
+    subtype: Endpoint 0 Scene 001
+    value: 4
+    id: TopPressed3
+  - platform: device
+    device_id: 3d915973f55a5b37d59d6ecc5f7c9fbb
+    domain: zwave_js
+    type: event.value_notification.central_scene
+    property: scene
+    property_key: "001"
+    endpoint: 0
+    command_class: 91
+    subtype: Endpoint 0 Scene 001
+    value: 5
+    id: TopPressed4
+  - platform: device
+    device_id: 3d915973f55a5b37d59d6ecc5f7c9fbb
+    domain: zwave_js
+    type: event.value_notification.central_scene
+    property: scene
+    property_key: "001"
+    endpoint: 0
+    command_class: 91
+    subtype: Endpoint 0 Scene 001
+    value: 6
+    id: TopPressed5
+  - platform: device
+    device_id: 3d915973f55a5b37d59d6ecc5f7c9fbb
+    domain: zwave_js
+    type: event.value_notification.central_scene
+    property: scene
+    property_key: "002"
+    endpoint: 0
+    command_class: 91
+    subtype: Endpoint 0 Scene 002
+    value: 0
+    id: BottomPressed
+  - platform: device
+    device_id: 3d915973f55a5b37d59d6ecc5f7c9fbb
+    domain: zwave_js
+    type: event.value_notification.central_scene
+    property: scene
+    property_key: "002"
+    endpoint: 0
+    command_class: 91
+    subtype: Endpoint 0 Scene 002
+    value: 1
+    id: BottomReleased
+  - platform: device
+    device_id: 3d915973f55a5b37d59d6ecc5f7c9fbb
+    domain: zwave_js
+    type: event.value_notification.central_scene
+    property: scene
+    property_key: "002"
+    endpoint: 0
+    command_class: 91
+    subtype: Endpoint 0 Scene 002
+    value: 2
+    id: BottomHeld
+  - platform: device
+    device_id: 3d915973f55a5b37d59d6ecc5f7c9fbb
+    domain: zwave_js
+    type: event.value_notification.central_scene
+    property: scene
+    property_key: "002"
+    endpoint: 0
+    command_class: 91
+    subtype: Endpoint 0 Scene 002
+    value: 3
+    id: BottomPressed2
+  - platform: device
+    device_id: 3d915973f55a5b37d59d6ecc5f7c9fbb
+    domain: zwave_js
+    type: event.value_notification.central_scene
+    property: scene
+    property_key: "002"
+    endpoint: 0
+    command_class: 91
+    subtype: Endpoint 0 Scene 002
+    value: 4
+    id: BottomPressed3
+  - platform: device
+    device_id: 3d915973f55a5b37d59d6ecc5f7c9fbb
+    domain: zwave_js
+    type: event.value_notification.central_scene
+    property: scene
+    property_key: "002"
+    endpoint: 0
+    command_class: 91
+    subtype: Endpoint 0 Scene 002
+    value: 5
+    id: BottomPressed4
+  - platform: device
+    device_id: 3d915973f55a5b37d59d6ecc5f7c9fbb
+    domain: zwave_js
+    type: event.value_notification.central_scene
+    property: scene
+    property_key: "002"
+    endpoint: 0
+    command_class: 91
+    subtype: Endpoint 0 Scene 002
+    value: 6
+    id: BottomPressed5
+condition: []
+action:
+  - choose:
+      - conditions:
+          - condition: trigger
+            id: TopPressed
+        sequence:
+          - service: light.turn_on
+            data:
+              brightness_pct: 100
+            target:
+              device_id:
+                - 321b8ad8cd59d45d721160b1717a6142
+                - 4c6fcc8e6e6e0ad5c289ef182e27d362
+      - conditions:
+          - condition: trigger
+            id: TopReleased
+        sequence: []
+      - conditions:
+          - condition: trigger
+            id: TopHeld
+        sequence:
+          - repeat:
+              while:
+                - condition: trigger
+                  id: TopHeld
+              sequence:
+                - device_id: 4c6fcc8e6e6e0ad5c289ef182e27d362
+                  domain: light
+                  entity_id: light.office_table
+                  type: brightness_increase
+                - device_id: 321b8ad8cd59d45d721160b1717a6142
+                  domain: light
+                  entity_id: light.office_floor
+                  type: brightness_increase
+                - delay:
+                    hours: 0
+                    minutes: 0
+                    seconds: 0
+                    milliseconds: 50
+      - conditions:
+          - condition: trigger
+            id: TopPressed2
+        sequence:
+          - service: cover.open_cover
+            data: {}
+            target:
+              device_id:
+                - 2220dddbc7a6931729d7b175d200b493
+                - fe57a12bb6dec4c505cb8abf1b2f93f4
+      - conditions:
+          - condition: trigger
+            id: TopPressed3
+        sequence: []
+      - conditions:
+          - condition: trigger
+            id: TopPressed4
+        sequence: []
+      - conditions:
+          - condition: trigger
+            id: TopPressed5
+        sequence: []
+      - conditions:
+          - condition: trigger
+            id: BottomPressed
+        sequence:
+          - service: light.turn_off
+            data: {}
+            target:
+              device_id:
+                - 4c6fcc8e6e6e0ad5c289ef182e27d362
+                - 321b8ad8cd59d45d721160b1717a6142
+      - conditions:
+          - condition: trigger
+            id: BottomReleased
+        sequence: []
+      - conditions:
+          - condition: trigger
+            id: BottomHeld
+        sequence:
+          - repeat:
+              while:
+                - condition: trigger
+                  id: BottomHeld
+              sequence:
+                - device_id: 321b8ad8cd59d45d721160b1717a6142
+                  domain: light
+                  entity_id: light.office_floor
+                  type: brightness_decrease
+                - device_id: 4c6fcc8e6e6e0ad5c289ef182e27d362
+                  domain: light
+                  entity_id: light.office_table
+                  type: brightness_decrease
+                - delay:
+                    hours: 0
+                    minutes: 0
+                    seconds: 0
+                    milliseconds: 50
+      - conditions:
+          - condition: trigger
+            id: BottomPressed2
+        sequence:
+          - service: cover.close_cover
+            data: {}
+            target:
+              device_id:
+                - fe57a12bb6dec4c505cb8abf1b2f93f4
+                - 2220dddbc7a6931729d7b175d200b493
+      - conditions:
+          - condition: trigger
+            id: BottomPressed3
+        sequence: []
+      - conditions:
+          - condition: trigger
+            id: BottomPressed4
+        sequence: []
+      - conditions:
+          - condition: trigger
+            id: BottomPressed5
+        sequence: []
+mode: restart
