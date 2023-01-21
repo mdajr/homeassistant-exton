@@ -420,7 +420,7 @@
     value: 0
     id: TopPressed
   - platform: device
-    device_id: 3d915973f55a5b37d59d6ecc5f7c9fbb
+    device_id: b0e81aa6f43b09cd1eead77598829370
     domain: zwave_js
     type: event.value_notification.central_scene
     property: scene
