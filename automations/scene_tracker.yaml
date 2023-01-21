@@ -1,17 +1,17 @@
 ---
-id: '1664328039282'
+id: "1664328039282"
 alias: Scene Tracker
-description: ''
+description: ""
 trigger:
-- event_data:
-    domain: scene
-    service: turn_on
-  event_type: call_service
-  platform: event
+  - event_data:
+      domain: scene
+      service: turn_on
+    event_type: call_service
+    platform: event
 condition: []
 action:
-- service: input_text.set_value
-  data_template:
-    entity_id: input_text.current_scene
-    value: '{{trigger.event.data.service_data.entity_id}}'
+  - service: input_text.set_value
+    data_template:
+      entity_id: input_text.current_scene
+      value: "{{trigger.event.data.service_data.entity_id}}"
 mode: single

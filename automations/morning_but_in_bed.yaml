@@ -1,25 +1,25 @@
 ---
-id: '1664333443849'
+id: "1664333443849"
 alias: Morning but in Bed
-description: ''
+description: ""
 trigger:
-- platform: state
-  entity_id:
-  - input_boolean.morning_but_in_bed
-  to: 'on'
+  - platform: state
+    entity_id:
+      - input_boolean.morning_but_in_bed
+    to: "on"
 condition: []
 action:
-- service: scene.turn_on
-  data: {}
-  target:
-    entity_id: scene.morning_but_in_bed
-- if:
-  - condition: template
-    value_template: '{{ state_attr(''sun.sun'', ''elevation'') > 0 }}'
-  then:
-  - service: cover.open_cover
+  - service: scene.turn_on
     data: {}
     target:
-      entity_id: cover.bedroom_top_window
-  else: []
+      entity_id: scene.morning_but_in_bed
+  - if:
+      - condition: template
+        value_template: "{{ state_attr('sun.sun', 'elevation') > 0 }}"
+    then:
+      - service: cover.open_cover
+        data: {}
+        target:
+          entity_id: cover.bedroom_top_window
+    else: []
 mode: single

@@ -1,7 +1,7 @@
 ---
-id: '1658624917283'
+id: "1658624917283"
 name: Movie
 entities:
   light.all_lights:
-    state: 'off'
+    state: "off"
 metadata: {}

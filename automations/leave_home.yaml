@@ -1,16 +1,16 @@
 ---
-id: '1658627548900'
+id: "1658627548900"
 alias: Leave Home
-description: ''
+description: ""
 trigger:
-- platform: state
-  entity_id:
-  - input_boolean.home
-  to: 'off'
+  - platform: state
+    entity_id:
+      - input_boolean.home
+    to: "off"
 condition: []
 action:
-- service: scene.turn_on
-  target:
-    entity_id: scene.away
-  metadata: {}
+  - service: scene.turn_on
+    target:
+      entity_id: scene.away
+    metadata: {}
 mode: single

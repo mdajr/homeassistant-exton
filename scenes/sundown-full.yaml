@@ -1,15 +1,15 @@
 ---
-id: '1658624386807'
+id: "1658624386807"
 name: Sundown - Full
 entities:
   switch.camera:
-    state: 'off'
+    state: "off"
   light.kitchen_lights:
     brightness: 255
-    state: 'on'
+    state: "on"
   light.living_room_lights:
     brightness: 255
-    state: 'on'
+    state: "on"
   cover.upper_blinds:
     state: open
   cover.lower_blinds:

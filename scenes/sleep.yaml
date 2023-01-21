@@ -1,17 +1,17 @@
 ---
-id: '1658626099656'
+id: "1658626099656"
 name: Sleep
 entities:
   switch.camera:
-    state: 'off'
+    state: "off"
   cover.all_blinds:
     state: closed
   light.all_lights:
-    state: 'off'
+    state: "off"
   fan.nest_thermostat:
     friendly_name: Nest Thermostat
     supported_features: 0
-    state: 'on'
+    state: "on"
 metadata:
   fan.nest_thermostat:
     entity_only: true

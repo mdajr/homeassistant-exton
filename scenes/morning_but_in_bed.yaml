@@ -1,8 +1,8 @@
 ---
-id: '1664333374302'
+id: "1664333374302"
 name: Morning but in bed
 entities:
   light.bedroom_lights:
     brightness: 255
-    state: 'on'
+    state: "on"
 metadata: {}
