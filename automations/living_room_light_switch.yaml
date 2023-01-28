@@ -201,7 +201,7 @@ action:
                     hours: 0
                     minutes: 0
                     seconds: 0
-                    milliseconds: 50
+                    milliseconds: 100
       - conditions:
           - condition: trigger
             id: TopPressed2
@@ -236,6 +236,7 @@ action:
                 - 7f6ee59c29c4e1fdeaf8b0ee005df543
                 - 23e6092859a3c851d792fd54b98a117f
                 - 870eba645fdfef95a789a63a8ced4db5
+                - c0790c05470acf27c7e4e00310943caf
       - conditions:
           - condition: trigger
             id: BottomReleased
@@ -265,7 +266,7 @@ action:
                     hours: 0
                     minutes: 0
                     seconds: 0
-                    milliseconds: 50
+                    milliseconds: 100
       - conditions:
           - condition: trigger
             id: BottomPressed2

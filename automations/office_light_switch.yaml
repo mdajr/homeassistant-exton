@@ -196,7 +196,7 @@ action:
                     hours: 0
                     minutes: 0
                     seconds: 0
-                    milliseconds: 50
+                    milliseconds: 100
       - conditions:
           - condition: trigger
             id: TopPressed2
@@ -254,7 +254,7 @@ action:
                     hours: 0
                     minutes: 0
                     seconds: 0
-                    milliseconds: 50
+                    milliseconds: 100
       - conditions:
           - condition: trigger
             id: BottomPressed2
