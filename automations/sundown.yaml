@@ -3,10 +3,16 @@ id: "1658632765311"
 alias: Sundown
 description: ""
 trigger:
-  - platform: template
-    value_template:
-      "{{ state_attr('sun.sun', 'elevation') < float(states('input_number.sun_elevation_trigger'))
-      }}"
+  - type: illuminance
+    platform: device
+    device_id: afd4796aa3c76e0fd3a138a7821e44c9
+    entity_id: sensor.multisensor_illuminance
+    domain: sensor
+    below: 500
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
 condition:
   - condition: state
     entity_id: input_boolean.home
