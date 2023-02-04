@@ -6,6 +6,22 @@ entities:
     state: "off"
   cover.all_blinds:
     state: open
+  switch.adaptive_lighting_sleep_mode_lights:
+    state: 'off'
+  switch.adaptive_lighting_adapt_brightness_lights:
+    state: 'on'
+  switch.adaptive_lighting_lights:
+    state: 'on'
+  switch.adaptive_lighting_adapt_color_lights:
+    state: 'on'
   light.all_lights:
-    state: "off"
-metadata: {}
+    state: "on"
+metadata:
+  switch.adaptive_lighting_sleep_mode_lights:
+    entity_only: true
+  switch.adaptive_lighting_adapt_brightness_lights:
+    entity_only: true
+  switch.adaptive_lighting_lights:
+    entity_only: true
+  switch.adaptive_lighting_adapt_color_lights:
+    entity_only: true

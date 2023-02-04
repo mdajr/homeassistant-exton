@@ -2,16 +2,28 @@
 id: "1658626099656"
 name: Sleep
 entities:
-  switch.camera:
-    state: "off"
   cover.all_blinds:
     state: closed
-  light.all_lights:
-    state: "off"
+  switch.adaptive_lighting_sleep_mode_lights:
+    state: 'on'
+  switch.adaptive_lighting_adapt_brightness_lights:
+    state: 'on'
+  switch.adaptive_lighting_lights:
+    state: 'on'
+  switch.adaptive_lighting_adapt_color_lights:
+    state: 'on'
   fan.nest_thermostat:
-    friendly_name: Nest Thermostat
-    supported_features: 0
+    state: "on"
+  light.all_lights:
     state: "on"
 metadata:
   fan.nest_thermostat:
+    entity_only: true
+  switch.adaptive_lighting_sleep_mode_lights:
+    entity_only: true
+  switch.adaptive_lighting_adapt_brightness_lights:
+    entity_only: true
+  switch.adaptive_lighting_lights:
+    entity_only: true
+  switch.adaptive_lighting_adapt_color_lights:
     entity_only: true
