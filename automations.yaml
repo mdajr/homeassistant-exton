@@ -1,2 +1,106 @@
----
-[]
+- id: '1677111646212'
+  alias: Shower Reminder
+  description: ''
+  trigger:
+  - type: not_opened
+    platform: device
+    device_id: f5be2141e02a7ccfd1fcdffe71a55b91
+    entity_id: binary_sensor.shower_curtain
+    domain: binary_sensor
+    for:
+      hours: 36
+      minutes: 0
+      seconds: 0
+  condition:
+  - condition: state
+    entity_id: input_boolean.home
+    state: 'on'
+    for:
+      hours: 24
+      minutes: 0
+      seconds: 0
+  action:
+  - service: notify.mobile_app_mikes_iphone
+    data:
+      title: Take a fucking shower!!!
+      message: You smelly ass piece of shit. You're not helping your depression
+  mode: single
+- id: '1677111716782'
+  alias: Shower Curtain Left Open
+  description: ''
+  trigger:
+  - type: opened
+    platform: device
+    device_id: f5be2141e02a7ccfd1fcdffe71a55b91
+    entity_id: binary_sensor.shower_curtain
+    domain: binary_sensor
+    for:
+      hours: 0
+      minutes: 20
+      seconds: 0
+  condition:
+  - condition: state
+    entity_id: input_boolean.home
+    state: 'on'
+  action:
+  - service: notify.mobile_app_mikes_iphone
+    data:
+      title: Close the shower curtain
+  mode: single
+- id: '1677111911671'
+  alias: Feed Daisy Morning
+  description: ''
+  trigger:
+  - type: not_opened
+    platform: device
+    device_id: 2546025f0ede02eb0c3d753f0b4da27f
+    entity_id: binary_sensor.closet_door
+    domain: binary_sensor
+    for:
+      hours: 6
+      minutes: 0
+      seconds: 0
+  condition:
+  - condition: state
+    entity_id: input_boolean.home
+    state: 'on'
+  - condition: state
+    entity_id: input_boolean.goodnight
+    state: 'off'
+    for:
+      hours: 0
+      minutes: 10
+      seconds: 0
+  - condition: time
+    after: 07:00:00
+    before: '12:00:00'
+  action:
+  - service: notify.mobile_app_mikes_iphone
+    data:
+      title: FEED DAISY
+  mode: single
+- id: '1677112083998'
+  alias: Feed Daisy Evening
+  description: ''
+  trigger:
+  - type: not_opened
+    platform: device
+    device_id: 2546025f0ede02eb0c3d753f0b4da27f
+    entity_id: binary_sensor.closet_door
+    domain: binary_sensor
+    for:
+      hours: 2
+      minutes: 0
+      seconds: 0
+  condition:
+  - condition: state
+    entity_id: input_boolean.home
+    state: 'on'
+  - condition: time
+    after: '18:00:00'
+    before: '19:00:00'
+  action:
+  - service: notify.mobile_app_mikes_iphone
+    data:
+      title: FEED DAISY
+  mode: single
