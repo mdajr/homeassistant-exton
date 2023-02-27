@@ -2,15 +2,8 @@
   alias: Shower Reminder
   description: ''
   trigger:
-  - type: not_opened
-    platform: device
-    device_id: f5be2141e02a7ccfd1fcdffe71a55b91
-    entity_id: binary_sensor.shower_curtain
-    domain: binary_sensor
-    for:
-      hours: 36
-      minutes: 0
-      seconds: 0
+  - platform: time_pattern
+    minutes: '30'
   condition:
   - condition: state
     entity_id: input_boolean.home
@@ -19,6 +12,18 @@
       hours: 24
       minutes: 0
       seconds: 0
+  - type: is_not_open
+    condition: device
+    device_id: f5be2141e02a7ccfd1fcdffe71a55b91
+    entity_id: binary_sensor.shower_curtain
+    domain: binary_sensor
+    for:
+      hours: 36
+      minutes: 0
+      seconds: 0
+  - condition: zone
+    entity_id: person.mike_auslander
+    zone: zone.home
   action:
   - service: notify.mobile_app_mikes_iphone
     data:
@@ -51,54 +56,23 @@
   alias: Feed Daisy Morning
   description: ''
   trigger:
-  - type: not_opened
-    platform: device
-    device_id: 2546025f0ede02eb0c3d753f0b4da27f
-    entity_id: binary_sensor.closet_door
-    domain: binary_sensor
-    for:
-      hours: 6
-      minutes: 0
-      seconds: 0
+  - platform: time
+    at: 09:00:00
+  - platform: time
+    at: '18:00:00'
   condition:
   - condition: state
     entity_id: input_boolean.home
     state: 'on'
-  - condition: state
-    entity_id: input_boolean.goodnight
-    state: 'off'
-    for:
-      hours: 0
-      minutes: 10
-      seconds: 0
-  - condition: time
-    after: 07:00:00
-    before: '12:00:00'
-  action:
-  - service: notify.mobile_app_mikes_iphone
-    data:
-      title: FEED DAISY
-  mode: single
-- id: '1677112083998'
-  alias: Feed Daisy Evening
-  description: ''
-  trigger:
-  - type: not_opened
-    platform: device
+  - type: is_not_open
+    condition: device
     device_id: 2546025f0ede02eb0c3d753f0b4da27f
     entity_id: binary_sensor.closet_door
     domain: binary_sensor
     for:
-      hours: 2
+      hours: 1
       minutes: 0
       seconds: 0
-  condition:
-  - condition: state
-    entity_id: input_boolean.home
-    state: 'on'
-  - condition: time
-    after: '18:00:00'
-    before: '19:00:00'
   action:
   - service: notify.mobile_app_mikes_iphone
     data:
