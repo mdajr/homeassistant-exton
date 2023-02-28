@@ -9,7 +9,7 @@
     entity_id: input_boolean.home
     state: 'on'
     for:
-      hours: 24
+      hours: 0
       minutes: 0
       seconds: 0
   - type: is_not_open
