@@ -209,10 +209,10 @@ action:
           - service: cover.open_cover
             data: {}
             target:
-              device_id:
-                - 024c1b59d9891d9d95f5ed403eb631c1
-                - 452d675feae6b57f9e616055be3bc2ec
-                - e4ea1273cd4fada33eae180ce85b22ad
+              entity_id:
+                - cover.living_room_bottom_window
+                - cover.living_room_top_window
+                - cover.porch_door
       - conditions:
           - condition: trigger
             id: TopPressed3
@@ -274,10 +274,10 @@ action:
           - service: cover.close_cover
             data: {}
             target:
-              device_id:
-                - 452d675feae6b57f9e616055be3bc2ec
-                - 024c1b59d9891d9d95f5ed403eb631c1
-                - e4ea1273cd4fada33eae180ce85b22ad
+              entity_id:
+                - cover.living_room_bottom_window
+                - cover.living_room_top_window
+                - cover.porch_door
       - conditions:
           - condition: trigger
             id: BottomPressed3

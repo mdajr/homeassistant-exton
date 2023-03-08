@@ -204,9 +204,9 @@ action:
           - service: cover.open_cover
             data: {}
             target:
-              device_id:
-                - 2220dddbc7a6931729d7b175d200b493
-                - fe57a12bb6dec4c505cb8abf1b2f93f4
+              entity_id:
+                - cover.office_top_window
+                - cover.office_bottom_window
       - conditions:
           - condition: trigger
             id: TopPressed3
@@ -262,9 +262,9 @@ action:
           - service: cover.close_cover
             data: {}
             target:
-              device_id:
-                - fe57a12bb6dec4c505cb8abf1b2f93f4
-                - 2220dddbc7a6931729d7b175d200b493
+              entity_id:
+                - cover.office_top_window
+                - cover.office_bottom_window
       - conditions:
           - condition: trigger
             id: BottomPressed3

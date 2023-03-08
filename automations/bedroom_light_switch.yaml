@@ -204,9 +204,9 @@ action:
           - service: cover.open_cover
             data: {}
             target:
-              device_id:
-                - 84aa6ba0a5364ac3e83885e547e06400
-                - 12a817c8f51e9afa02b88a6d84ffc598
+              entity_id:
+                - cover.bedroom_top_window
+                - cover.bedroom_bottom_window
       - conditions:
           - condition: trigger
             id: TopPressed3
@@ -262,9 +262,9 @@ action:
           - service: cover.close_cover
             data: {}
             target:
-              device_id:
-                - 84aa6ba0a5364ac3e83885e547e06400
-                - 12a817c8f51e9afa02b88a6d84ffc598
+              entity_id:
+                - cover.bedroom_top_window
+                - cover.bedroom_bottom_window
       - conditions:
           - condition: trigger
             id: BottomPressed3
