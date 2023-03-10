@@ -8,4 +8,7 @@ entities:
     state: "off"
   cover.all_blinds:
     state: closed
+  fan.air_purifier:
+    percentage: 100
+    state: "on"
 metadata: {}

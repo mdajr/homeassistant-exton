@@ -4,4 +4,7 @@ name: Movie
 entities:
   light.all_lights:
     state: "off"
+  fan.air_purifier:
+    percentage: 50
+    state: "on"
 metadata: {}

@@ -5,16 +5,19 @@ entities:
   cover.all_blinds:
     state: closed
   switch.adaptive_lighting_sleep_mode_lights:
-    state: 'on'
+    state: "on"
   switch.adaptive_lighting_adapt_brightness_lights:
-    state: 'on'
+    state: "on"
   switch.adaptive_lighting_lights:
-    state: 'on'
+    state: "on"
   switch.adaptive_lighting_adapt_color_lights:
-    state: 'on'
+    state: "on"
   fan.nest_thermostat:
     state: "on"
   light.all_lights:
+    state: "on"
+  fan.air_purifier:
+    percentage: 50
     state: "on"
 metadata:
   fan.nest_thermostat:

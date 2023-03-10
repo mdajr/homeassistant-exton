@@ -4,4 +4,7 @@ name: Sundown - Diff
 entities:
   cover.lower_blinds:
     state: closed
+  fan.air_purifier:
+    percentage: 50
+    state: "on"
 metadata: {}

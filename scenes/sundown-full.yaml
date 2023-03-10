@@ -8,4 +8,7 @@ entities:
     state: closed
   light.all_lights:
     state: "on"
+  fan.air_purifier:
+    percentage: 50
+    state: "on"
 metadata: {}
